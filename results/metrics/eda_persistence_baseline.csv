@@ -1,0 +1,5 @@
+,train,val
+P(outbreak in 2 wks | outbreak now),0.709,0.558
+P(outbreak in 2 wks | no outbreak now),0.025,0.014
+precision,0.709,0.558
+recall,0.708,0.558
