@@ -1,0 +1,16 @@
+,SMD,mutual information
+population_density,0.0304,0.1155
+population,0.0042,0.1113
+cases_lag1,0.7765,0.0698
+week,0.1787,0.0072
+month,0.2408,0.0064
+latitude,0.0042,0.0057
+rainfall_lag2,0.1614,0.0036
+rainfall_lag4,0.192,0.0034
+humidity_pct,0.1705,0.0027
+temp_max_c,-0.0856,0.0025
+temp_min_c,0.0338,0.0023
+longitude,0.0098,0.0019
+rainfall_mm,0.0946,0.0016
+area_km2,-0.0324,0.0007
+coastal_district,0.1332,0.0006
