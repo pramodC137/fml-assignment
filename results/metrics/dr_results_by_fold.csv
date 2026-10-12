@@ -1,0 +1,96 @@
+setting,model,fold,pr_auc
+all features,Logistic Regression,1,0.27898070117381363
+all features,Logistic Regression,2,0.8485425617380122
+all features,Logistic Regression,3,0.5523675550578738
+all features,Logistic Regression,4,0.912030212803288
+all features,Logistic Regression,5,0.8377646621406689
+all features,Random Forest,1,0.2841597459629814
+all features,Random Forest,2,0.7689218832380385
+all features,Random Forest,3,0.5977683278260755
+all features,Random Forest,4,0.8960016542671567
+all features,Random Forest,5,0.8336961616784196
+persistence baseline,Persistence,1,0.1210035046957702
+persistence baseline,Persistence,2,0.7406776521670138
+persistence baseline,Persistence,3,0.33588931913317976
+persistence baseline,Persistence,4,0.7490462263704731
+persistence baseline,Persistence,5,0.5351557271557272
+without case history,Logistic Regression,1,0.1098702116500297
+without case history,Logistic Regression,2,0.6071800862155949
+without case history,Logistic Regression,3,0.0821786827804816
+without case history,Logistic Regression,4,0.24607145506453762
+without case history,Logistic Regression,5,0.08126009803522513
+without case history,Random Forest,1,0.07530404878833984
+without case history,Random Forest,2,0.5766681056014832
+without case history,Random Forest,3,0.11283702311059965
+without case history,Random Forest,4,0.294588428010147
+without case history,Random Forest,5,0.09161445292333453
+without climate,Logistic Regression,1,0.2584176002426334
+without climate,Logistic Regression,2,0.8480774089252527
+without climate,Logistic Regression,3,0.544509949791753
+without climate,Logistic Regression,4,0.90140483028585
+without climate,Logistic Regression,5,0.8106062427031814
+without climate,Random Forest,1,0.2615897573113014
+without climate,Random Forest,2,0.7713661753204744
+without climate,Random Forest,3,0.5957624217408647
+without climate,Random Forest,4,0.9126313517956306
+without climate,Random Forest,5,0.7976970703824102
+without calendar,Logistic Regression,1,0.274397633208031
+without calendar,Logistic Regression,2,0.8503773649277961
+without calendar,Logistic Regression,3,0.527643883768762
+without calendar,Logistic Regression,4,0.9206409104164438
+without calendar,Logistic Regression,5,0.8391247328811431
+without calendar,Random Forest,1,0.24244698403259
+without calendar,Random Forest,2,0.758841969299814
+without calendar,Random Forest,3,0.5953150325666348
+without calendar,Random Forest,4,0.8989279016122985
+without calendar,Random Forest,5,0.8302915606380622
+without district,Logistic Regression,1,0.2957348660289328
+without district,Logistic Regression,2,0.886025815583972
+without district,Logistic Regression,3,0.5600021068255191
+without district,Logistic Regression,4,0.9140514764575822
+without district,Logistic Regression,5,0.8232433391507359
+without district,Random Forest,1,0.2453917648832398
+without district,Random Forest,2,0.7672872473874348
+without district,Random Forest,3,0.5931740830571087
+without district,Random Forest,4,0.8911989496466947
+without district,Random Forest,5,0.8354101953646356
+without humidity_w5_8,Logistic Regression,1,0.2785844872194961
+without humidity_w5_8,Logistic Regression,2,0.8471417931150658
+without humidity_w5_8,Logistic Regression,3,0.5595148404757144
+without humidity_w5_8,Logistic Regression,4,0.9118549230457633
+without humidity_w5_8,Logistic Regression,5,0.8320011778558567
+without humidity_w5_8,Random Forest,1,0.26781053454614706
+without humidity_w5_8,Random Forest,2,0.7629363073584225
+without humidity_w5_8,Random Forest,3,0.5877338082844643
+without humidity_w5_8,Random Forest,4,0.9084383566377802
+without humidity_w5_8,Random Forest,5,0.831684907859059
+PCA 90% variance,Logistic Regression,1,0.2915283647871637
+PCA 90% variance,Logistic Regression,2,0.8505184439188901
+PCA 90% variance,Logistic Regression,3,0.5445213311050745
+PCA 90% variance,Logistic Regression,4,0.9098036075027757
+PCA 90% variance,Logistic Regression,5,0.8138500417112671
+PCA 90% variance,Random Forest,1,0.21554382893126292
+PCA 90% variance,Random Forest,2,0.8090014425395778
+PCA 90% variance,Random Forest,3,0.5332355740085154
+PCA 90% variance,Random Forest,4,0.8696575821213499
+PCA 90% variance,Random Forest,5,0.8133625221451309
+PCA 95% variance,Logistic Regression,1,0.2671744049385846
+PCA 95% variance,Logistic Regression,2,0.8528230083083136
+PCA 95% variance,Logistic Regression,3,0.55432746601679
+PCA 95% variance,Logistic Regression,4,0.9100383040209427
+PCA 95% variance,Logistic Regression,5,0.8232537496047792
+PCA 95% variance,Random Forest,1,0.23982525211085845
+PCA 95% variance,Random Forest,2,0.8084070770432803
+PCA 95% variance,Random Forest,3,0.5423874123142769
+PCA 95% variance,Random Forest,4,0.8614430090905694
+PCA 95% variance,Random Forest,5,0.8437290176690287
+PCA 99% variance,Logistic Regression,1,0.2785281752033603
+PCA 99% variance,Logistic Regression,2,0.85567234930343
+PCA 99% variance,Logistic Regression,3,0.5535840647032858
+PCA 99% variance,Logistic Regression,4,0.9108800778949989
+PCA 99% variance,Logistic Regression,5,0.821382310580256
+PCA 99% variance,Random Forest,1,0.2511660981435381
+PCA 99% variance,Random Forest,2,0.8196707189612669
+PCA 99% variance,Random Forest,3,0.5304639822113463
+PCA 99% variance,Random Forest,4,0.8805747477558239
+PCA 99% variance,Random Forest,5,0.8479521749769499

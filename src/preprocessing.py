@@ -60,6 +60,18 @@ CATEGORICAL_FEATURES = [config.DISTRICT_COL]
 
 MODEL_FEATURES = LOG_FEATURES + NUMERIC_FEATURES + CATEGORICAL_FEATURES
 
+# Thematic groups, used to measure what each kind of information contributes.
+FEATURE_GROUPS = {
+    "case history": [
+        "cases_now", "cases_lag1", "cases_lag2", "cases_lag3", "cases_lag4",
+        "cases_roll4", "cases_roll8", "cases_rel_threshold", "cases_trend", "outbreak_now",
+    ],
+    "climate": ["rain_recent4", "rain_w5_8", "humidity_w5_8", "temp_max_anom4"],
+    "calendar": ["week_sin", "week_cos"],
+    "district": ["log_density", "district"],
+}
+assert sorted(sum(FEATURE_GROUPS.values(), [])) == sorted(MODEL_FEATURES)
+
 # Validation years for expanding-window cross-validation inside the training period.
 CV_VALIDATION_YEARS = (2016, 2017, 2018, 2019, 2020)
 
@@ -190,25 +202,56 @@ def _one_hot() -> OneHotEncoder:
     return OneHotEncoder(handle_unknown="ignore", sparse=False)
 
 
-def make_preprocessor() -> ColumnTransformer:
-    """Unfitted preprocessing step. Fit it on training data only (a Pipeline does this)."""
-    log_pipeline = Pipeline([
+def _log_pipeline() -> Pipeline:
+    return Pipeline([
         ("impute", SimpleImputer(strategy="median")),
         ("log1p", FunctionTransformer(np.log1p, feature_names_out="one-to-one")),
         ("scale", StandardScaler()),
     ])
-    numeric_pipeline = Pipeline([
+
+
+def _numeric_pipeline() -> Pipeline:
+    return Pipeline([
         ("impute", SimpleImputer(strategy="median")),
         ("scale", StandardScaler()),
     ])
-    return ColumnTransformer(
-        [
-            ("log", log_pipeline, LOG_FEATURES),
-            ("num", numeric_pipeline, NUMERIC_FEATURES),
-            ("district", _one_hot(), CATEGORICAL_FEATURES),
-        ],
-        verbose_feature_names_out=False,
-    )
+
+
+def _branches(features, include_district: bool) -> list:
+    unknown = set(features) - set(MODEL_FEATURES)
+    if unknown:
+        raise ValueError(f"Unknown features: {sorted(unknown)}")
+    branches = [
+        ("log", _log_pipeline(), [f for f in LOG_FEATURES if f in features]),
+        ("num", _numeric_pipeline(), [f for f in NUMERIC_FEATURES if f in features]),
+    ]
+    if include_district:
+        branches.append(("district", _one_hot(), [f for f in CATEGORICAL_FEATURES if f in features]))
+    return [b for b in branches if b[2]]  # skip branches with no selected columns
+
+
+def make_preprocessor(features=MODEL_FEATURES) -> ColumnTransformer:
+    """Unfitted preprocessing step. Fit it on training data only (a Pipeline does this).
+
+    ``features`` selects a subset of ``MODEL_FEATURES`` (default: all of them),
+    so feature selection can compare smaller sets on equal terms. Branches are
+    named "log", "num" and "district".
+    """
+    return ColumnTransformer(_branches(features, include_district=True), verbose_feature_names_out=False)
+
+
+def make_district_encoder() -> OneHotEncoder:
+    """One-hot encoder for district, for pipelines that assemble their own branches (for example PCA)."""
+    return _one_hot()
+
+
+def make_numeric_transformer(features=MODEL_FEATURES) -> ColumnTransformer:
+    """The "log" and "num" branches only, for the numeric features in ``features``.
+
+    Used where the numeric block is processed further (for example by PCA)
+    while district is encoded separately.
+    """
+    return ColumnTransformer(_branches(features, include_district=False), verbose_feature_names_out=False)
 
 
 # ---------------------------------------------------------------------------
