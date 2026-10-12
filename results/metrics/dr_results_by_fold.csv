@@ -1,5 +1,5 @@
 setting,model,fold,pr_auc
-all features,Logistic Regression,1,0.27898070117381363
+all features,Logistic Regression,1,0.2790138942219495
 all features,Logistic Regression,2,0.8485425617380122
 all features,Logistic Regression,3,0.5523675550578738
 all features,Logistic Regression,4,0.912030212803288
@@ -25,7 +25,7 @@ without case history,Random Forest,3,0.11283702311059965
 without case history,Random Forest,4,0.294588428010147
 without case history,Random Forest,5,0.09161445292333453
 without climate,Logistic Regression,1,0.2584176002426334
-without climate,Logistic Regression,2,0.8480774089252527
+without climate,Logistic Regression,2,0.8480792981357077
 without climate,Logistic Regression,3,0.544509949791753
 without climate,Logistic Regression,4,0.90140483028585
 without climate,Logistic Regression,5,0.8106062427031814
@@ -35,7 +35,7 @@ without climate,Random Forest,3,0.5957624217408647
 without climate,Random Forest,4,0.9126313517956306
 without climate,Random Forest,5,0.7976970703824102
 without calendar,Logistic Regression,1,0.274397633208031
-without calendar,Logistic Regression,2,0.8503773649277961
+without calendar,Logistic Regression,2,0.8503790513431391
 without calendar,Logistic Regression,3,0.527643883768762
 without calendar,Logistic Regression,4,0.9206409104164438
 without calendar,Logistic Regression,5,0.8391247328811431
@@ -55,7 +55,7 @@ without district,Random Forest,3,0.5931740830571087
 without district,Random Forest,4,0.8911989496466947
 without district,Random Forest,5,0.8354101953646356
 without humidity_w5_8,Logistic Regression,1,0.2785844872194961
-without humidity_w5_8,Logistic Regression,2,0.8471417931150658
+without humidity_w5_8,Logistic Regression,2,0.8472496778116015
 without humidity_w5_8,Logistic Regression,3,0.5595148404757144
 without humidity_w5_8,Logistic Regression,4,0.9118549230457633
 without humidity_w5_8,Logistic Regression,5,0.8320011778558567
@@ -85,7 +85,7 @@ PCA 95% variance,Random Forest,3,0.5423874123142769
 PCA 95% variance,Random Forest,4,0.8614430090905694
 PCA 95% variance,Random Forest,5,0.8437290176690287
 PCA 99% variance,Logistic Regression,1,0.2785281752033603
-PCA 99% variance,Logistic Regression,2,0.85567234930343
+PCA 99% variance,Logistic Regression,2,0.8556827259279451
 PCA 99% variance,Logistic Regression,3,0.5535840647032858
 PCA 99% variance,Logistic Regression,4,0.9108800778949989
 PCA 99% variance,Logistic Regression,5,0.821382310580256
