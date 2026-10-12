@@ -1,0 +1,19 @@
+feature,group,transform,description
+cases_now,case history,"impute, log(1 + x), scale",Cases in the origin week t
+cases_lag1,case history,"impute, log(1 + x), scale",Cases in week t-1
+cases_lag2,case history,"impute, log(1 + x), scale",Cases in week t-2
+cases_lag3,case history,"impute, log(1 + x), scale",Cases in week t-3
+cases_lag4,case history,"impute, log(1 + x), scale",Cases in week t-4
+cases_roll4,case history,"impute, log(1 + x), scale",Mean weekly cases over weeks t-3 to t
+cases_roll8,case history,"impute, log(1 + x), scale",Mean weekly cases over weeks t-7 to t
+cases_rel_threshold,case history,"impute, log(1 + x), scale",Cases in week t divided by the district's outbreak threshold
+rain_recent4,climate,"impute, log(1 + x), scale",Mean weekly rainfall over weeks t-3 to t
+rain_w5_8,climate,"impute, log(1 + x), scale",Mean weekly rainfall over weeks t-8 to t-5
+cases_trend,case history,"impute, scale",log(1 + cases now) minus log(1 + cases four weeks earlier)
+humidity_w5_8,climate,"impute, scale",Mean relative humidity over weeks t-8 to t-5
+temp_max_anom4,climate,"impute, scale",Mean of (max temperature minus the district's usual value for that week) over weeks t-3 to t
+week_sin,calendar,"impute, scale",Sine of the week's position in the year
+week_cos,calendar,"impute, scale",Cosine of the week's position in the year
+log_density,district,"impute, scale",Log of the district's mean population density over training years (constant per district)
+outbreak_now,case history,"impute, scale",1 if week t is already an outbreak week
+district,district,one-hot,"District, one-hot encoded"

@@ -1,0 +1,29 @@
+raw column,decision,reason
+year,Used for splitting only,Encodes time; as a feature it would let the model memorise epidemic years
+week,"Replaced by week_sin, week_cos",Seasonality with week 52 next to week 1 (01a section 3)
+start.date,Key and sort order only,Identifies the week; not a predictor
+end.date,Dropped: redundant,Always start.date plus 5 to 7 days (data dictionary)
+month,Dropped: redundant,Correlation 0.91 with week (01b section 7)
+season,Dropped: redundant,One value per month (01b section 8)
+monsoon_season,Dropped: redundant,One value per month (01b section 8)
+is_epidemic_year,Dropped: leaky,"Hindsight label for 2009, 2017, 2019 (01b section 8)"
+district,Kept: one-hot encoded,Large differences between districts (01a section 4)
+province,Dropped: redundant,Fully determined by district (01b section 8)
+latitude,Dropped: district proxy,One value per district; district is already encoded
+longitude,Dropped: district proxy,One value per district; district is already encoded
+coastal_district,Dropped: district proxy,One value per district; district is already encoded
+elevation_category,Dropped: district proxy,One value per district; district is already encoded
+area_km2,Dropped: district proxy,One value per district; district is already encoded
+population,Replaced by log_density,Acts as a district-year identifier (01b section 6.1); decision 3
+population_source,Dropped: metadata,"Describes data quality, not the district"
+population_density,Replaced by log_density,Acts as a district-year identifier (01b section 6.1); decision 3
+cases,Target source and case features,"Builds the label and cases_now, lags, rolling means, trend, ratio"
+incidence_rate,Dropped: leaky,"Exactly cases / population x 100,000 (01b section 8)"
+cases_lag1,Recomputed as cases_lag1,Rebuilt with the other lags so all share one method (values identical)
+cases_zscore,Dropped: leaky,Uses the same week's cases and future statistics (01b section 8)
+rainfall_mm,"Used in rain_recent4, rain_w5_8",Rainfall acts about 7 to 9 weeks before cases (01b section 5)
+rainfall_lag2,Replaced by rain_w5_8,Lag too short for the effect found in 01b section 5
+rainfall_lag4,Replaced by rain_w5_8,Lag too short for the effect found in 01b section 5
+temp_max_c,Used in temp_max_anom4,Warmer-than-usual weeks precede more cases (01b section 5)
+temp_min_c,Dropped: weak and collinear,"Almost no relationship with cases; r = 0.72 with temp_max (01b sections 5, 7)"
+humidity_pct,Used in humidity_w5_8,Humidity acts about 7 weeks before cases (01b section 5)
