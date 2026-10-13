@@ -4,12 +4,16 @@ Both models import from this module, so they are trained on exactly the same
 inputs. Typical use in a model notebook::
 
     from sklearn.pipeline import Pipeline
-    from src.preprocessing import build_model_frame, get_xy, make_preprocessor
+    from src.preprocessing import build_model_frame, get_xy, make_selected_preprocessor
 
     frame = build_model_frame()
     X_train, y_train = get_xy(frame, "train")
-    model = Pipeline([("prep", make_preprocessor()), ("clf", SomeClassifier())])
+    model = Pipeline([("prep", make_selected_preprocessor()), ("clf", SomeClassifier())])
     model.fit(X_train, y_train)
+
+``make_selected_preprocessor`` is the preprocessing agreed in step 8: the
+shared pipeline from ``make_preprocessor`` followed by L1 feature selection.
+``make_preprocessor`` (all 42 inputs) stays available for comparisons.
 
 Timing convention
 -----------------
@@ -34,7 +38,9 @@ import inspect
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
+from sklearn.feature_selection import SelectFromModel
 from sklearn.impute import SimpleImputer
+from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler
 
@@ -252,6 +258,60 @@ def make_numeric_transformer(features=MODEL_FEATURES) -> ColumnTransformer:
     while district is encoded separately.
     """
     return ColumnTransformer(_branches(features, include_district=False), verbose_feature_names_out=False)
+
+
+# ---------------------------------------------------------------------------
+# Feature selection agreed in step 8
+# ---------------------------------------------------------------------------
+# Joint decision in notebooks/02c_feature_selection.ipynb: L1 selection at C = 0.01
+# was the simplest feature set within 0.01 mean PR-AUC of the best, for both
+# algorithms. Fitted on 2007 to 2020 it keeps 9 of the 42 encoded inputs.
+SELECTION_C = 0.01
+
+# Coefficients at or below this size count as zero, so the selector keeps exactly
+# the inputs the L1 penalty leaves in the model. Set explicitly because the
+# automatic default depends on the scikit-learn version.
+SELECTION_THRESHOLD = 1e-5
+
+
+def l1_logistic(C: float = SELECTION_C) -> LogisticRegression:
+    """L1-penalised logistic regression, written for old and new scikit-learn versions.
+
+    scikit-learn 1.8 deprecated ``penalty`` in favour of ``l1_ratio``. On older
+    versions ``l1_ratio`` alone would silently fit an L2 model, so the argument
+    is chosen from the installed version.
+    """
+    settings = dict(C=C, solver="liblinear", class_weight="balanced", max_iter=5000)
+    penalty = inspect.signature(LogisticRegression).parameters.get("penalty")
+    if penalty is None or penalty.default == "deprecated":
+        return LogisticRegression(l1_ratio=1.0, **settings)
+    return LogisticRegression(penalty="l1", **settings)
+
+
+def make_selected_preprocessor(C: float = SELECTION_C) -> Pipeline:
+    """Unfitted preprocessing agreed for both models: ``make_preprocessor`` then L1 selection.
+
+    The selector keeps the encoded inputs whose L1 coefficient is non-zero. As a
+    step inside the model pipeline it is refitted on the training rows of every
+    fit, including each cross-validation fold, so it never sees the rows it is
+    scored on.
+    """
+    return Pipeline([
+        ("prep", make_preprocessor()),
+        ("select", SelectFromModel(l1_logistic(C), threshold=SELECTION_THRESHOLD)),
+    ])
+
+
+def selected_inputs(fitted) -> list:
+    """Names of the encoded inputs kept by a fitted ``make_selected_preprocessor``.
+
+    Accepts the fitted preprocessing itself or a fitted model pipeline whose first
+    step is that preprocessing.
+    """
+    step = fitted
+    if isinstance(fitted, Pipeline) and "select" not in fitted.named_steps:
+        step = fitted.steps[0][1]
+    return list(step.get_feature_names_out())
 
 
 # ---------------------------------------------------------------------------

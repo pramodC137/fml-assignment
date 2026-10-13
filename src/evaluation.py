@@ -1,21 +1,63 @@
 """Shared evaluation code, so every comparison in the project is scored identically.
 
-The main entry point is ``cross_validate`` which scores a preprocessing choice
-with one or more classifiers on the expanding-window folds from
-``src.preprocessing.expanding_year_folds``. The score is PR-AUC (average
-precision), the project's primary metric for the rare outbreak class.
+``cross_validate`` scores a preprocessing choice with one or more classifiers
+on the expanding-window folds from ``src.preprocessing.expanding_year_folds``.
+The score is PR-AUC (average precision), the project's primary metric for the
+rare outbreak class.
+
+``classification_metrics`` returns every metric the report uses for one set of
+predictions. Baselines (step 9), both models (step 10) and the final comparison
+(step 11) all call it, so they are scored identically.
 """
 
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 from sklearn.base import clone
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import average_precision_score
+from sklearn.metrics import (
+    accuracy_score, average_precision_score, confusion_matrix, f1_score, matthews_corrcoef,
+    precision_score, recall_score, roc_auc_score,
+)
 from sklearn.pipeline import Pipeline
 
 from src import config
+
+# Column order for metric tables: ranking metrics first, then metrics at a
+# decision threshold, then the confusion matrix counts.
+METRIC_NAMES = ["PR-AUC", "ROC-AUC", "precision", "recall", "F1", "MCC", "accuracy",
+                "TP", "FP", "FN", "TN"]
+
+
+def classification_metrics(y_true, scores, threshold: float = 0.5) -> dict:
+    """Every metric the project reports, for one set of predictions.
+
+    ``scores`` are outbreak probabilities, or any score where higher means an
+    outbreak is more likely (persistence, for example, scores 0 or 1).
+    PR-AUC and ROC-AUC use the scores directly and do not depend on a threshold.
+    The other metrics use the predictions ``scores >= threshold``.
+
+    A rule that never predicts an outbreak gets precision, recall, F1 and MCC
+    of 0 rather than a warning. If ``y_true`` holds only one class, the two
+    ranking metrics are undefined and returned as NaN.
+    """
+    y_true = np.asarray(y_true).astype(int)
+    scores = np.asarray(scores, dtype=float)
+    predicted = (scores >= threshold).astype(int)
+    tn, fp, fn, tp = confusion_matrix(y_true, predicted, labels=[0, 1]).ravel()
+    both_classes = np.unique(y_true).size == 2
+    return {
+        "PR-AUC": average_precision_score(y_true, scores) if both_classes else np.nan,
+        "ROC-AUC": roc_auc_score(y_true, scores) if both_classes else np.nan,
+        "precision": precision_score(y_true, predicted, zero_division=0),
+        "recall": recall_score(y_true, predicted, zero_division=0),
+        "F1": f1_score(y_true, predicted, zero_division=0),
+        "MCC": matthews_corrcoef(y_true, predicted) if both_classes else np.nan,
+        "accuracy": accuracy_score(y_true, predicted),
+        "TP": int(tp), "FP": int(fp), "FN": int(fn), "TN": int(tn),
+    }
 
 
 def reference_models() -> dict:
