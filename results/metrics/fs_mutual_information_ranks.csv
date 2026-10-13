@@ -1,0 +1,19 @@
+,"rank, fold 2016","rank, fold 2017","rank, fold 2018","rank, fold 2019","rank, fold 2020",mean rank
+cases_lag1,8,8,5,5,5,6.2
+cases_lag2,9,12,7,7,6,8.2
+cases_lag3,10,13,8,8,8,9.4
+cases_lag4,14,16,9,9,9,11.4
+cases_now,5,5,4,3,3,4.0
+cases_rel_threshold,1,1,1,1,1,1.0
+cases_roll4,4,4,3,4,4,3.8
+cases_roll8,6,7,6,6,7,6.4
+cases_trend,3,3,10,10,10,7.2
+district,7,6,17,17,17,12.8
+humidity_w5_8,15,14,16,15,18,15.6
+log_density,12,10,18,16,15,14.2
+outbreak_now,2,2,2,2,2,2.0
+rain_recent4,17,15,14,18,16,16.0
+rain_w5_8,16,18,11,14,11,14.0
+temp_max_anom4,17,17,12,11,12,13.8
+week_cos,13,9,13,12,14,12.2
+week_sin,11,11,15,13,13,12.6

@@ -1,0 +1,111 @@
+setting,model,fold,pr_auc
+all features,Logistic Regression,1,0.27898070117381363
+all features,Logistic Regression,2,0.8485425617380122
+all features,Logistic Regression,3,0.5523675550578738
+all features,Logistic Regression,4,0.912030212803288
+all features,Logistic Regression,5,0.8377646621406689
+all features,Random Forest,1,0.2841597459629814
+all features,Random Forest,2,0.7689218832380385
+all features,Random Forest,3,0.5977683278260755
+all features,Random Forest,4,0.8960016542671567
+all features,Random Forest,5,0.8336961616784196
+top 3 by mutual information,Logistic Regression,1,0.29244096081601595
+top 3 by mutual information,Logistic Regression,2,0.8860029516910416
+top 3 by mutual information,Logistic Regression,3,0.540733905071216
+top 3 by mutual information,Logistic Regression,4,0.9043692549914819
+top 3 by mutual information,Logistic Regression,5,0.7921629856801139
+top 3 by mutual information,Random Forest,1,0.1752115085271339
+top 3 by mutual information,Random Forest,2,0.7739682184597103
+top 3 by mutual information,Random Forest,3,0.41957109206572674
+top 3 by mutual information,Random Forest,4,0.7852866089268802
+top 3 by mutual information,Random Forest,5,0.6579808662218888
+top 5 by mutual information,Logistic Regression,1,0.28740170120715436
+top 5 by mutual information,Logistic Regression,2,0.8811360877797194
+top 5 by mutual information,Logistic Regression,3,0.55574463685123
+top 5 by mutual information,Logistic Regression,4,0.9138276251707993
+top 5 by mutual information,Logistic Regression,5,0.8016485098806856
+top 5 by mutual information,Random Forest,1,0.1911334707786901
+top 5 by mutual information,Random Forest,2,0.7987556703922831
+top 5 by mutual information,Random Forest,3,0.509671985060553
+top 5 by mutual information,Random Forest,4,0.8872270820584478
+top 5 by mutual information,Random Forest,5,0.7554935044249595
+top 8 by mutual information,Logistic Regression,1,0.2611077266064199
+top 8 by mutual information,Logistic Regression,2,0.8582169346660486
+top 8 by mutual information,Logistic Regression,3,0.5531584754513184
+top 8 by mutual information,Logistic Regression,4,0.9152372691525219
+top 8 by mutual information,Logistic Regression,5,0.8081152976506853
+top 8 by mutual information,Random Forest,1,0.2691511227196959
+top 8 by mutual information,Random Forest,2,0.7495461030144247
+top 8 by mutual information,Random Forest,3,0.5898058018304545
+top 8 by mutual information,Random Forest,4,0.8989626977746774
+top 8 by mutual information,Random Forest,5,0.7780545195532167
+top 10 by mutual information,Logistic Regression,1,0.26312143658628506
+top 10 by mutual information,Logistic Regression,2,0.8502867502512175
+top 10 by mutual information,Logistic Regression,3,0.5533138215732655
+top 10 by mutual information,Logistic Regression,4,0.9151579540849828
+top 10 by mutual information,Logistic Regression,5,0.8086065950246091
+top 10 by mutual information,Random Forest,1,0.23906525240404447
+top 10 by mutual information,Random Forest,2,0.7571347755213544
+top 10 by mutual information,Random Forest,3,0.5970296728147007
+top 10 by mutual information,Random Forest,4,0.9019326646234559
+top 10 by mutual information,Random Forest,5,0.7899600798756196
+top 13 by mutual information,Logistic Regression,1,0.25828090713259083
+top 13 by mutual information,Logistic Regression,2,0.848358272033698
+top 13 by mutual information,Logistic Regression,3,0.5530782114292547
+top 13 by mutual information,Logistic Regression,4,0.9113051136457989
+top 13 by mutual information,Logistic Regression,5,0.8106078293761433
+top 13 by mutual information,Random Forest,1,0.2479543167924694
+top 13 by mutual information,Random Forest,2,0.768170038750289
+top 13 by mutual information,Random Forest,3,0.5838739064757479
+top 13 by mutual information,Random Forest,4,0.9158789719527513
+top 13 by mutual information,Random Forest,5,0.8252788267602419
+top 15 by mutual information,Logistic Regression,1,0.2634016834892338
+top 15 by mutual information,Logistic Regression,2,0.8479094355702937
+top 15 by mutual information,Logistic Regression,3,0.5573638824414364
+top 15 by mutual information,Logistic Regression,4,0.9114567359962144
+top 15 by mutual information,Logistic Regression,5,0.8133292576942869
+top 15 by mutual information,Random Forest,1,0.2636425106538046
+top 15 by mutual information,Random Forest,2,0.7716443139497915
+top 15 by mutual information,Random Forest,3,0.5964851694131525
+top 15 by mutual information,Random Forest,4,0.8975247995219904
+top 15 by mutual information,Random Forest,5,0.8129569589972774
+"L1 selection, C = 0.003",Logistic Regression,1,0.2563790314888278
+"L1 selection, C = 0.003",Logistic Regression,2,0.8860782875653136
+"L1 selection, C = 0.003",Logistic Regression,3,0.5373193704498788
+"L1 selection, C = 0.003",Logistic Regression,4,0.9060739627898087
+"L1 selection, C = 0.003",Logistic Regression,5,0.7969232174174106
+"L1 selection, C = 0.003",Random Forest,1,0.16515305178261125
+"L1 selection, C = 0.003",Random Forest,2,0.7566581674371489
+"L1 selection, C = 0.003",Random Forest,3,0.3384016543748769
+"L1 selection, C = 0.003",Random Forest,4,0.7783979719745113
+"L1 selection, C = 0.003",Random Forest,5,0.6672006815205866
+"L1 selection, C = 0.01",Logistic Regression,1,0.27369929734877435
+"L1 selection, C = 0.01",Logistic Regression,2,0.8808685701733935
+"L1 selection, C = 0.01",Logistic Regression,3,0.5737362724170338
+"L1 selection, C = 0.01",Logistic Regression,4,0.9131404981217704
+"L1 selection, C = 0.01",Logistic Regression,5,0.8206628780816779
+"L1 selection, C = 0.01",Random Forest,1,0.23806721718596696
+"L1 selection, C = 0.01",Random Forest,2,0.7752816835973114
+"L1 selection, C = 0.01",Random Forest,3,0.5928852558983904
+"L1 selection, C = 0.01",Random Forest,4,0.8950740611094694
+"L1 selection, C = 0.01",Random Forest,5,0.8325946319161691
+"L1 selection, C = 0.03",Logistic Regression,1,0.2660733476872047
+"L1 selection, C = 0.03",Logistic Regression,2,0.8578592857983385
+"L1 selection, C = 0.03",Logistic Regression,3,0.5628788336323732
+"L1 selection, C = 0.03",Logistic Regression,4,0.9121118674557537
+"L1 selection, C = 0.03",Logistic Regression,5,0.8204461776983467
+"L1 selection, C = 0.03",Random Forest,1,0.23451069944907407
+"L1 selection, C = 0.03",Random Forest,2,0.7785641113410551
+"L1 selection, C = 0.03",Random Forest,3,0.5978432466419022
+"L1 selection, C = 0.03",Random Forest,4,0.8952617455640909
+"L1 selection, C = 0.03",Random Forest,5,0.8361062774863459
+without humidity_w5_8 and district,Logistic Regression,1,0.29958799628564825
+without humidity_w5_8 and district,Logistic Regression,2,0.8834463017458214
+without humidity_w5_8 and district,Logistic Regression,3,0.5573638824414364
+without humidity_w5_8 and district,Logistic Regression,4,0.9147594448700276
+without humidity_w5_8 and district,Logistic Regression,5,0.8201350511883893
+without humidity_w5_8 and district,Random Forest,1,0.23218456956561492
+without humidity_w5_8 and district,Random Forest,2,0.7770685108050867
+without humidity_w5_8 and district,Random Forest,3,0.5964851694131525
+without humidity_w5_8 and district,Random Forest,4,0.8977165151284204
+without humidity_w5_8 and district,Random Forest,5,0.8295998462792513

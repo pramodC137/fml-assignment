@@ -1,0 +1,5 @@
+tolerance,settings that qualify,rule selects,inputs
+0.005,0,none,
+0.01,5,"L1 selection, C = 0.01",10.2
+0.015,7,"L1 selection, C = 0.01",10.2
+0.02,11,"L1 selection, C = 0.01",10.2
