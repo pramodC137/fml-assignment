@@ -8,6 +8,10 @@ rare outbreak class.
 ``classification_metrics`` returns every metric the report uses for one set of
 predictions. Baselines (step 9), both models (step 10) and the final comparison
 (step 11) all call it, so they are scored identically.
+
+For the tuned models (step 10), ``out_of_fold_scores`` collects each
+cross-validation year's predictions from a model trained only on earlier years,
+and ``choose_threshold`` picks the decision threshold from those predictions.
 """
 
 from __future__ import annotations
@@ -146,3 +150,48 @@ def fold_table(results: pd.DataFrame, years=None) -> pd.DataFrame:
         table.columns = [f"{y}" for y in years]
     return table
 
+
+def out_of_fold_scores(estimator, X: pd.DataFrame, y: pd.Series, folds) -> pd.DataFrame:
+    """Outbreak scores for every validation row of every fold, each from a model fitted on that fold's training rows.
+
+    Returns one row per validation row, indexed by its position in ``X``, with
+    columns ``fold`` (1, 2, ...) and ``score``. scikit-learn's
+    ``cross_val_predict`` cannot be used here because the expanding-window folds
+    never validate the earliest years.
+    """
+    parts = []
+    for fold_number, (train_idx, val_idx) in enumerate(folds, start=1):
+        model = clone(estimator).fit(X.iloc[train_idx], y.iloc[train_idx])
+        parts.append(pd.DataFrame(
+            {"fold": fold_number, "score": model.predict_proba(X.iloc[val_idx])[:, 1]}, index=val_idx,
+        ))
+    return pd.concat(parts)
+
+
+def _f1_at_thresholds(y_true: np.ndarray, scores: np.ndarray, thresholds: np.ndarray) -> np.ndarray:
+    """F1 of the rule ``scores >= t`` for every t in ``thresholds``."""
+    positives = np.sort(scores[y_true == 1])
+    negatives = np.sort(scores[y_true == 0])
+    tp = positives.size - np.searchsorted(positives, thresholds, side="left")
+    fp = negatives.size - np.searchsorted(negatives, thresholds, side="left")
+    fn = positives.size - tp
+    denominator = 2 * tp + fp + fn
+    return np.divide(2 * tp, denominator, out=np.zeros(len(thresholds)), where=denominator > 0)
+
+
+def choose_threshold(y_true, scores, groups=None) -> float:
+    """Decision threshold that maximises F1, with each group weighted equally.
+
+    Pass the cross-validation predictions from ``out_of_fold_scores`` and their
+    ``fold`` column as ``groups``. F1 is then averaged across the validation
+    years, so the epidemic year 2017, which holds about half of all outbreak
+    weeks, does not decide the threshold on its own. Use training-year
+    predictions only, never validation or test rows.
+    """
+    y_true = np.asarray(y_true).astype(int)
+    scores = np.asarray(scores, dtype=float)
+    groups = np.zeros(len(y_true)) if groups is None else np.asarray(groups)
+    candidates = np.unique(scores)
+    mean_f1 = np.mean([_f1_at_thresholds(y_true[groups == g], scores[groups == g], candidates)
+                       for g in np.unique(groups)], axis=0)
+    return float(candidates[np.argmax(mean_f1)])

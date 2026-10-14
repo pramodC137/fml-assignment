@@ -1,0 +1,29 @@
+{
+  "model": "Random Forest",
+  "owner": "Member B",
+  "preprocessing": "make_selected_preprocessor() (L1 selection, C = 0.01)",
+  "hyperparameters": {
+    "n_estimators": 300,
+    "random_state": 42,
+    "class_weight": null,
+    "max_depth": 6,
+    "max_features": 1.0,
+    "min_samples_leaf": 50
+  },
+  "decision_threshold": 0.322905,
+  "threshold_rule": "maximise F1 averaged across the 2016-2020 cross-validation years",
+  "cv_mean_pr_auc_2016_2020": 0.711472,
+  "validation_pr_auc_2021_2022": 0.538242,
+  "inputs_used": [
+    "cases_now",
+    "cases_lag1",
+    "cases_rel_threshold",
+    "rain_recent4",
+    "rain_w5_8",
+    "cases_trend",
+    "humidity_w5_8",
+    "temp_max_anom4",
+    "log_density"
+  ],
+  "trained_on": "train split, 2007-2020"
+}
