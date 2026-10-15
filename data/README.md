@@ -12,7 +12,7 @@
 | File | `raw/dengue_srilanka_full_2006_2025.csv` (6,063,376 bytes) |
 | Downloaded on | 10 October 2026 |
 
-**Provenance (open item):** the Kaggle page does not state where the case counts, climate and population figures come from. These sources are to be confirmed with the uploader. Until confirmed, units marked *assumed* below are inferred from the data, not documented by the publisher.
+**Provenance (open item):** the Kaggle page does not state where the case counts, climate and population figures come from. These sources are to be confirmed with the uploader. Until confirmed, units marked *assumed* below are inferred from the data, not documented by the publisher. The case counts are also below the official national totals in most years (see *Cross-check against official case totals* below).
 
 ## Context
 
@@ -27,6 +27,29 @@ Dengue is a mosquito-borne viral disease and a major public health burden in Sri
 - Weeks normally span 6 days from start to end date; one week spans 5 days and one spans 7 days (25 rows each)
 - **Missing values** occur only in the three lag columns, and only at the start of each district’s series where no earlier week exists: `cases_lag1` 25 rows, `rainfall_lag2` 50 rows, `rainfall_lag4` 100 rows
 - **No invalid values:** no negative cases or rainfall, no minimum temperature above the maximum, no humidity above 100%
+
+## Cross-check against official case totals
+
+The yearly sums of `cases` (all 25 districts, by the dataset's `year` column) were compared with the national totals published by the Epidemiology Unit of the Ministry of Health.
+
+| Year | Dataset | Official total | Dataset as share of official |
+| --- | --- | --- | --- |
+| 2012 | 23,527 | 44,461 | 53% |
+| 2013 | 22,387 | 32,063 | 70% |
+| 2014 | 35,314 | 47,502 | 74% |
+| 2015 | 22,313 | 29,777 | 75% |
+| 2016 | 35,192 | 55,150 | 64% |
+| 2017 | 174,687 | 186,101 | 94% |
+| 2018 | 51,321 | 51,659 | 99% |
+| 2019 | 94,780 | 105,049 | 90% |
+| 2020 | 32,222 | 31,162 | 103% |
+| 2022, 1 January to 27 October | 26,297 | over 62,000 | about 42% |
+
+Sources of the official figures: Epidemiology Unit annual totals for 2012 to 2020 as compiled at https://en.wikipedia.org/wiki/Dengue_pandemic_in_Sri_Lanka (to be confirmed against the annual reports on epid.gov.lk); the 2022 figure as reported by News 1st on 27 October 2022 (https://newsfirst.lk/2022/10/27/dengue-cases-spike-in-sri-lanka-over-60-000-reported-so-far).
+
+**Finding.** The dataset covers every week for all 25 districts, so the shortfall is not caused by missing rows. It is close to the official totals in 2017 to 2020 but holds only about half of them in some years (2012 and 2022). The reason is not documented. Possible explanations, none yet confirmed, are provisional weekly figures rather than final totals, a different set of reporting areas (the Epidemiology Unit reports 26 health areas, including Kalmunai, against 25 districts here), or partly reconstructed values.
+
+**Consequence for the project.** The outbreak thresholds are set per district from this same data, and both models and all baselines are scored on it, so the comparison between them stays valid. The results describe this dataset, however, and may not carry over to the complete official counts. This is stated as a limitation in the report.
 
 ## Data dictionary
 
@@ -63,6 +86,8 @@ Dengue is a mosquito-borne viral disease and a major public health burden in Sri
 
 A machine-readable copy is in `data_dictionary.csv`.
 
+The *Planned role* column records the plan made before preprocessing. The final decision for every column, with its reason, is in `results/metrics/preprocessing_column_decisions.csv` (`notebooks/02a_preprocessing.ipynb`, section 1).
+
 ## Leakage audit
 
 Each derived column was recomputed from the raw columns to establish exactly how it was built.
@@ -85,4 +110,4 @@ Each derived column was recomputed from the raw columns to establish exactly how
 
 ## Rules for this folder
 
-Raw files in `raw/` are never modified. All transformations are done in code and write to `processed/`.
+Raw files in `raw/` are never modified. All transformations are done in code by the shared modules in `src/` and are rebuilt in memory each time a notebook runs, so no processed copy of the data is stored.

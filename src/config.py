@@ -13,7 +13,6 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 RAW_DATA_FILE = PROJECT_ROOT / "data" / "raw" / "dengue_srilanka_full_2006_2025.csv"
-PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
 FIGURES_DIR = PROJECT_ROOT / "results" / "figures"
 METRICS_DIR = PROJECT_ROOT / "results" / "metrics"
 
@@ -53,9 +52,5 @@ CASES_COL = "cases"
 LEAKY_COLUMNS = ["incidence_rate", "cases_zscore", "is_epidemic_year"]
 
 # Fully determined by another column, or metadata rather than a district attribute.
+# 02a_preprocessing.ipynb checks that none of these, or the leaky columns, reach the model.
 REDUNDANT_COLUMNS = ["end.date", "province", "population_source"]
-
-CLIMATE_COLUMNS = [
-    "rainfall_mm", "rainfall_lag2", "rainfall_lag4",
-    "temp_max_c", "temp_min_c", "humidity_pct",
-]
