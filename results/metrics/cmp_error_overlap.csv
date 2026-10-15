@@ -1,0 +1,5 @@
+,outbreak weeks (warning = caught),weeks without outbreak (warning = false alarm),outbreak weeks that were onsets
+both models warned,215,160,17
+Random Forest only,19,46,12
+Logistic Regression only,28,61,24
+neither warned,105,3191,105

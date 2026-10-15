@@ -1,0 +1,4 @@
+,weeks,followed by an outbreak,"mean score, Random Forest","mean score, Logistic Regression"
+weeks at least twice the threshold,72,58 (81%),0.855,0.962
+Random Forest score of 0.95 or more,28,26 (93%),0.980,0.923
+Logistic Regression score of 0.95 or more,52,45 (87%),0.879,0.988

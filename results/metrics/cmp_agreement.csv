@@ -1,0 +1,6 @@
+,value
+warnings agree (share of all weeks),0.9597385620915033
+Cohen's kappa between the two sets of warnings,0.8068359195666146
+Spearman rank correlation of the scores,0.8323650271252501
+"Spearman correlation, forest vs persistence score",0.8986649570326822
+"Spearman correlation, logistic vs persistence score",0.88160899721835

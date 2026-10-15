@@ -1,0 +1,10 @@
+measure,comparison,observed difference,95% interval low,95% interval high,share of resamples above zero,interval excludes zero
+PR-AUC,Random Forest minus Logistic Regression,0.00743002488070077,-0.03297894750328201,0.04509975087220773,0.6145,False
+PR-AUC,Random Forest minus Persistence score,0.026773153166918084,-0.009793671233838801,0.060670389763081756,0.9285,False
+PR-AUC,Logistic Regression minus Persistence score,0.019343128286217315,0.0015314950041494164,0.03514146170766327,0.986,True
+recall,Random Forest minus Logistic Regression,-0.02452316076294281,-0.0603471959075408,0.010474676073159545,0.073,False
+recall,Random Forest minus Persistence,0.0681198910081744,0.03990595693863934,0.10263157894736841,1.0,True
+recall,Logistic Regression minus Persistence,0.0926430517711172,0.04988323687684027,0.13528638223261247,1.0,True
+F1,Random Forest minus Logistic Regression,-0.004911894568732977,-0.03435309371982404,0.020216707995939533,0.366,False
+F1,Random Forest minus Persistence,0.013529986600981259,-0.012470934074769005,0.03949794319025183,0.853,False
+F1,Logistic Regression minus Persistence,0.018441881169714236,-0.012521791405118152,0.04869873910467958,0.8835,False

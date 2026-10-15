@@ -1,0 +1,9 @@
+,Random Forest,Logistic Regression
+hyperparameters tuned,"4 (depth, leaf size, inputs per split, class weight)","2 (regularisation strength C, class weight)"
+settings tried in tuning,96 (x 5 folds = 480 fits),18 (x 5 folds = 90 fits)
+training time on 2007-2022 (s),1.64,0.14
+how it can be explained,permutation and impurity importance; no direction of effect,"signed coefficients and odds ratios per input, plus permutation importance"
+"top inputs (permutation importance, 2021-2022)","cases_rel_threshold (0.494), humidity_w5_8 (0.019), cases_lag1 (0.016)","cases_rel_threshold (0.547), cases_lag1 (0.142), cases_now (0.090)"
+"Brier score, test",0.0563,0.0565
+"PR-AUC, test",0.603,0.595
+"outbreak weeks warned, test",234 of 367,243 of 367

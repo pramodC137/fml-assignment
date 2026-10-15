@@ -1,0 +1,6 @@
+,value
+outbreak weeks missed by both models,105
+of which onsets (no outbreak at the forecast week),105
+"median cases at forecast, share of threshold",0.52
+"median score (threshold), Random Forest",0.050 (0.323)
+"median score (threshold), Logistic Regression",0.064 (0.242)
