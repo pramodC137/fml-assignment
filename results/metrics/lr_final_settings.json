@@ -1,0 +1,27 @@
+{
+  "model": "Logistic Regression",
+  "owner": "Member A",
+  "preprocessing": "make_selected_preprocessor() (L1 selection, C = 0.01)",
+  "hyperparameters": {
+    "penalty": "L2 (scikit-learn default)",
+    "max_iter": 5000,
+    "C": 10,
+    "class_weight": null
+  },
+  "decision_threshold": 0.241774,
+  "threshold_rule": "maximise F1 averaged across the 2016-2020 cross-validation years",
+  "cv_mean_pr_auc_2016_2020": 0.696272,
+  "validation_pr_auc_2021_2022": 0.585119,
+  "inputs_used": [
+    "cases_now",
+    "cases_lag1",
+    "cases_rel_threshold",
+    "rain_recent4",
+    "rain_w5_8",
+    "cases_trend",
+    "humidity_w5_8",
+    "temp_max_anom4",
+    "log_density"
+  ],
+  "trained_on": "train split, 2007-2020"
+}
